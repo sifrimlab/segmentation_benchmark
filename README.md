@@ -11,7 +11,7 @@ This repository hosts a framework that benchmarks current state-of-the-art segme
 - Clone the repository locally using:
 
 ```bash 
-  git clone github.com:sifrimlab/segmentation_benchmark
+  git clone https://github.com/sifrimlab/segmentation_benchmark
 ```
 
 - Modify [nexflow.config](./nextflow.config) to change path to your data and output folder
