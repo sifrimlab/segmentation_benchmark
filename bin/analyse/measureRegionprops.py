@@ -41,6 +41,7 @@ def measureLabeledImage(labeled_image: np.array, original_image: np.array = None
 
 if __name__ == '__main__':
     import sys
+    import re
     from skimage import io
     labeled_path = sys.argv[1]
     labeled_image = io.imread(labeled_path)
@@ -49,5 +50,12 @@ if __name__ == '__main__':
     original_image = io.imread(sys.argv[3]) if len(sys.argv) > 3 else None
     pixels_to_um = sys.argv[4] if len(sys.argv) > 4 else 0
     df = measureLabeledImage(labeled_image, original_image, pixels_to_um)
+    # Check if we have to add a tile column 
+    if "tile" in prefix:
+        tile_word = re.findall(r"tile\d+", prefix)[0]
+        tile_nr =  re.findall(r"\d+", prefix)[0]
+        tile_column = [tile_nr for i in range(len(df))]
+        df["Tile"] = tile_column
+
     df.to_csv(f"{prefix}_properties.csv", index=False)
 

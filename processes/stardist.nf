@@ -9,7 +9,7 @@ binDir = Paths.get(workflow.projectDir.toString(), "bin/$moduleName/")
 
 
 process stardist_segment {
-    publishDir "$params.global.outdir/stardist_labeled/", mode: 'symlink'
+    publishDir "$params.global.outdir/labeled/", mode: 'symlink'
 
     input: 
     path DAPI_image

@@ -17,7 +17,6 @@ workflow {
     grid_size_x = read_DAPI.out.grid_size_x
     grid_size_y = read_DAPI.out.grid_size_y
 
-    stardist(DAPI)
+    stardist(DAPI, grid_size_x, grid_size_y)
+
 }
-
-
