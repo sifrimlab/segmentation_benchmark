@@ -2,6 +2,8 @@ import sys
 import os
 from skimage import io
 from modules.adaptedTileFunction import padImage
+from PIL import Image
+Image.MAX_IMAGE_PIXELS = 933120000
 # important for giant tiff files, otherwise PIL thinks it's malware
 
 image = sys.argv[1]

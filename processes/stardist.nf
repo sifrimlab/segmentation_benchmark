@@ -19,7 +19,7 @@ process stardist_segment {
     
     script:
     """
-    python $binDir/segment.py $DAPI_image $DAPI_image.baseName
+    python $binDir/segment.py $DAPI_image $DAPI_image.baseName $params.model_path
     """
 }
 

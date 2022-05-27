@@ -3,7 +3,7 @@ from skimage import io
 from csbdeep.utils import Path, normalize
 from stardist.models import StarDist2D
 
-def stardistSegment(img: np.array, model:str = "2D_versatile_fluo") -> np.array:
+def stardistSegment(img: np.array, model_path) -> np.array:
     """Segments cells using pretrained stardist models.
 
     Parameters
@@ -18,7 +18,10 @@ def stardistSegment(img: np.array, model:str = "2D_versatile_fluo") -> np.array:
     np.array
 
     """
-    model_versatile = StarDist2D.from_pretrained(model)
+    model_versatile = StarDist2D(None, name='2D_versatile_fluo', basedir=model_path)
+    model_versatile.load_weights('weights_best.h5')
+
+    # model_versatile = StarDist2D.from_pretrained(model)
 
     # extract number of channels in case the input image is an RGB image
     n_channel = 1 if img.ndim == 2 else img.shape[-1]
@@ -36,6 +39,7 @@ if __name__ == '__main__':
     dapi_path = sys.argv[1]
     dapi_img = io.imread(dapi_path)
     prefix =  sys.argv[2]
-    labeled_image = stardistSegment(dapi_img)
+    model_path = sys.argv[3]
+    labeled_image = stardistSegment(dapi_img,model_path)
     io.imsave(f"{prefix}_labeled.tif", labeled_image)
 

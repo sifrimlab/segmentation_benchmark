@@ -48,3 +48,17 @@ process collect_cell_properties {
     
 }
 
+process collect_IoU_measures{
+    publishDir "$params.global.outdir/benchmarks/", mode: 'move'
+
+    input:
+    path measures
+    
+    output:
+    path "concat_measures.csv"
+
+    script:
+    """
+    python $binDir/collectMeasures.py $measures
+    """
+}
