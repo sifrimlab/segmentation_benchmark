@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 params.stitchDir = "combined" // Overwrite global param to influence output dir behaviour
 
 include {
-        stitch_image_tiles ; collect_cell_properties
+        stitch_image_tiles ; collect_cell_properties; collect_IoU_measures
 } from "$baseDir/processes/combine.nf"
 
 workflow combine_segmentation{
@@ -23,4 +23,15 @@ workflow combine_segmentation{
     emit: 
         stitched_labeled_image  = stitch_image_tiles.out
         /* concat_properties       = collect_cell_properties.out */
+}
+
+workflow combine_IoU_measures {
+    take: 
+        IoU_measures
+    main:
+
+        collect_IoU_measures(IoU_measures)
+
+    emit: 
+        concat_measures  = collect_IoU_measures.out
 }
