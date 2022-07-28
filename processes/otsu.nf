@@ -2,14 +2,15 @@ nextflow.enable.dsl=2
 
 import java.nio.file.Paths
 
-moduleName = "cellpose"
-params.local_outdir = "cellpose"
+params.local_outdir = "otsu"
+
+moduleName = "otsu"
 
 //workflow.projectDir points to the dir that the initial workflow originates from
 binDir = Paths.get(workflow.projectDir.toString(), "bin/$moduleName/")
 
 
-process cellpose_segment {
+process otsu_segment {
     publishDir "$params.global.outdir/$params.local_outdir/labeled/", mode: 'symlink'
 
     input: 
@@ -20,7 +21,7 @@ process cellpose_segment {
     
     script:
     """
-    python $binDir/segment.py $DAPI_image $DAPI_image.baseName $params.model_str
+    python $binDir/segment.py $DAPI_image $DAPI_image.baseName 
     """
 }
 

@@ -53,7 +53,7 @@ if __name__ == '__main__':
     # Check if we have to add a tile column 
     if "tile" in prefix:
         tile_word = re.findall(r"tile\d+", prefix)[0]
-        tile_nr =  re.findall(r"\d+", prefix)[0]
+        tile_nr =  re.findall(r"\d+", tile_word)[0]
         tile_column = [tile_nr for i in range(len(df))]
         df["Tile"] = tile_column
 
