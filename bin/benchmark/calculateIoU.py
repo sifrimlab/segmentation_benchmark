@@ -10,6 +10,6 @@ prefix = os.path.splitext(sys.argv[2])[0]
 iou = calcIoU(ground_truth, labeled_image)
 
 df = pd.DataFrame({"name": prefix, "IoU": iou}, index = [0])
-df.to_csv(f"{prefix}_IoU.csv")
+df.to_csv(f"{prefix}_IoU.csv", index=False)
 
 

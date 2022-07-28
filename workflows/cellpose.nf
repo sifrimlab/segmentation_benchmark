@@ -1,8 +1,8 @@
 nextflow.enable.dsl=2
 
 include {
-        stardist_segment
-} from "$baseDir/processes/stardist.nf"
+        cellpose_segment
+} from "$baseDir/processes/cellpose.nf"
 
 include {
         measure_regionprops
@@ -13,20 +13,21 @@ include {
 } from "$baseDir/workflows/combine.nf"
 
 
-workflow stardist_workflow {
+workflow cellpose_workflow {
+
     take:
         DAPI // paths to dapi images seperately
         grid_size_x
         grid_size_y
     main:
-        stardist_segment(DAPI)
+        cellpose_segment(DAPI)
 
-        measure_regionprops(stardist_segment.out)
+        measure_regionprops(cellpose_segment.out)
 
         if (params.utils.tile == true){
-            combine_segmentation(stardist_segment.out.collect(), measure_regionprops.out.collect(), grid_size_x, grid_size_y)
+            combine_segmentation(cellpose_segment.out.collect(), measure_regionprops.out.collect(), grid_size_x, grid_size_y)
         }
     emit:
-        labeled_images = stardist_segment.out
+        labeled_images = cellpose_segment.out
         properties = measure_regionprops.out
 }

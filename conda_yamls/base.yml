@@ -1,0 +1,11 @@
+name: base
+channels:
+  - defaults
+dependencies:
+  - python=3.9.12=h12debd9_0
+  - pip:
+    - matplotlib==3.5.1
+    - numpy==1.21.5
+    - pandas==1.4.2
+    - scikit-image==0.19.2
+    - tifffile==2022.3.25
