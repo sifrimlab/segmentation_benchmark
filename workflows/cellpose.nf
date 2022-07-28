@@ -17,9 +17,9 @@ include{
     calculate_labeled_measures
 } from "$baseDir/workflows/benchmark.nf" 
 
-include {
-        collect_IoU_measures
-} from "$baseDir/workflows/combine.nf"
+/* include { */
+        /* collect_IoU_measures */
+/* } from "$baseDir/workflows/combine.nf" */
 
 
 workflow cellpose_workflow {

@@ -1,0 +1,7 @@
+name,method,IoU
+MERFISH_nuclei1_labeled,cellpose,0.8160005404140758
+MERFISH_nuclei2_labeled,cellpose,0.8160005404140758
+MERFISH_nuclei2_labeled,otsu,0.5879451348652026
+MERFISH_nuclei1_labeled,otsu,0.5879451348652026
+MERFISH_nuclei2_labeled,stardist,0.5158687839352604
+MERFISH_nuclei1_labeled,stardist,0.5158687839352604

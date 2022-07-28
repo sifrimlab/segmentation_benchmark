@@ -53,7 +53,8 @@ workflow compare_all {
     cellpose()
     stardist()
 
-    IoUs = otsu.out.concat(cellpose.out, stardist.out).collect()
+    IoUs = otsu.out.concat(cellpose.out, stardist.out)
     IoUs.view()
+    IoUs.collectFile(name: "$params.global.outdir/results/concat_all_IoU_measures.csv", sort:true, keepHeader:true)
 
 }
