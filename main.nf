@@ -11,6 +11,9 @@ include {
 include{
     calculate_labeled_measures
 } from "$baseDir/workflows/benchmark.nf" 
+include {
+        collect_IoU_measures
+} from "$baseDir/workflows/combine.nf"
 
 workflow {
 
@@ -26,5 +29,11 @@ workflow {
     labeled_images = stardist.out.labeled_images
 
     calculate_labeled_measures(labeled_images, ground_truth_images)
+
+    calculate_labeled_measures.out.collectFile(name: "$params.global.outdir/benchmark/concat_IoU_measures.csv", sort:true, keepHeader:true).set {concat_IoU_measures}
+
+    /* collect_IoU_measures(calculate_labeled_measures.out) */
+
+
 
 }

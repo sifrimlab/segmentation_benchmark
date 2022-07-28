@@ -14,12 +14,12 @@ workflow calculate_labeled_measures {
         ground_truth_images.map(){ file -> tuple((file.baseName=~ /\d+/)[0], file) }.set {ground_truth_images_mapped}
 
         labeled_image.map(){file -> tuple((file.baseName=~ /\d+/)[0], file) }.set {labeled_images_mapped}
-        ground_truth_images_mapped.combine(labeled_images_mapped).set{combined_images}
+        ground_truth_images_mapped.combine(labeled_images_mapped, by:0).set{combined_images}
 
-        /* calculate_IoU(combined_images) */
+        calculate_IoU(combined_images)
 
-    /* emit: */
-    /*     calculate_IoU.out */
+    emit:
+        calculate_IoU.out
 
 }
 
