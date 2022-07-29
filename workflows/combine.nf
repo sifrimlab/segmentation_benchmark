@@ -25,13 +25,3 @@ workflow combine_segmentation{
         /* concat_properties       = collect_cell_properties.out */
 }
 
-workflow combine_IoU_measures {
-    take: 
-        IoU_measures
-    main:
-
-        collect_IoU_measures(IoU_measures)
-
-    emit: 
-        concat_measures  = collect_IoU_measures.out
-}
